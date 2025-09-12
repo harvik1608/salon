@@ -53,8 +53,7 @@
         display: block;
     }
     .fc-bgevent.unavailable-slot {
-        background-color: #d7d7d7 !important;   
-        opacity: 1 !important;
+        background-color: #fcfcfc !important;   
     }
     .fc-bgevent.available-slot-line {
         background: #fff !important;  
@@ -65,7 +64,6 @@
     .fc-bgevent.available-slot {
         background-color: #fff !important; 
         border: none !important;
-        opacity: 0.8 !important;
         color: #fff !important; 
     }
     .fc-time-grid-event.fc-short .fc-time:before {
@@ -560,7 +558,7 @@
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script> -->
 <script src="<?php echo base_url('public/calendar/fullcalendar.js'); ?>"></script>
 <script src="<?php echo base_url('public/calendar/resource.js'); ?>"></script>
-<script src="<?php echo base_url('public/calendar/appointment.js'); ?>?v=12.0"></script>
+<script src="<?php echo base_url('public/calendar/appointment.js'); ?>?v=<?php echo time(); ?>"></script>
 <script src="<?php echo base_url('public/admin/js/service_scroll/priority-nav-scroller.js'); ?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script src="<?php echo base_url('public/admin/js/jquery.validate.js'); ?>"></script>

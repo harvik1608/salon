@@ -76,40 +76,40 @@ $(document).ready(function(){
                             success:function(resources){
                                 callback(resources);
 
-                                // $.ajax({
-                                //     url: base_url + "/get-available-staff-time",
-                                //     type: "post",
-                                //     dataType: "json",
-                                //     data: { date: $(".fc-center h2").text() },
-                                //     success: function(availableTimes) {
-                                //         var fullDayStart = viewDateISO+"T"+company_stime;
-                                //         var fullDayEnd = viewDateISO+"T"+company_etime;
+                                $.ajax({
+                                    url: base_url + "/get-available-staff-time",
+                                    type: "post",
+                                    dataType: "json",
+                                    data: { date: $(".fc-center h2").text() },
+                                    success: function(availableTimes) {
+                                        var fullDayStart = viewDateISO+"T"+company_stime;
+                                        var fullDayEnd = viewDateISO+"T"+company_etime;
                                     
-                                //         var staffIds = [...new Set(availableTimes.map(t => t.staff_id))];
-                                //         $.each(staffIds, function(index, staffId) {
-                                //             // alert(fullDayStart);
-                                //             target.fullCalendar('renderEvent', {
-                                //                 start: fullDayStart,
-                                //                 end: fullDayEnd,
-                                //                 rendering: "background",
-                                //                 resourceId: staffId,
-                                //                 className: "unavailable-slot",
-                                //                 allDay: false
-                                //             }, true);
-                                //         });
-                                //         $.each(availableTimes, function(index, timeSlot) {
-                                //             // alert(timeSlot.start_time);
-                                //             target.fullCalendar('renderEvent', {
-                                //                 start: viewDateISO+"T"+timeSlot.start_time,
-                                //                 end: viewDateISO+"T"+timeSlot.end_time,
-                                //                 rendering: "background",
-                                //                 resourceId: timeSlot.staff_id,
-                                //                 className: "available-slot-line",
-                                //                 allDay: false
-                                //             }, true);
-                                //         });
-                                //     }
-                                // });
+                                        var staffIds = [...new Set(availableTimes.map(t => t.staff_id))];
+                                        $.each(staffIds, function(index, staffId) {
+                                            // alert(fullDayStart);
+                                            target.fullCalendar('renderEvent', {
+                                                start: fullDayStart,
+                                                end: fullDayEnd,
+                                                rendering: "background",
+                                                resourceId: staffId,
+                                                className: "unavailable-slot",
+                                                allDay: false
+                                            }, true);
+                                        });
+                                        $.each(availableTimes, function(index, timeSlot) {
+                                            // alert(timeSlot.start_time);
+                                            target.fullCalendar('renderEvent', {
+                                                start: viewDateISO+"T"+timeSlot.start_time,
+                                                end: viewDateISO+"T"+timeSlot.end_time,
+                                                rendering: "background",
+                                                resourceId: timeSlot.staff_id,
+                                                className: "available-slot-line",
+                                                allDay: false
+                                            }, true);
+                                        });
+                                    }
+                                });
                             }
                         });
                     },100);    
