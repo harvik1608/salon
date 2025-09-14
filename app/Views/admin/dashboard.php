@@ -53,7 +53,7 @@
         display: block;
     }
     .fc-bgevent.unavailable-slot {
-        background-color: #fcfcfc !important;   
+        background-color: #000 !important;   
     }
     .fc-bgevent.available-slot-line {
         background: #fff !important;  
@@ -61,11 +61,11 @@
         border-bottom: none !important;
     }
 
-    .fc-bgevent.available-slot {
-        background-color: #fff !important; 
+    /*.fc-bgevent.available-slot {
+        background-color: #fcfcfc !important; 
         border: none !important;
         color: #fff !important; 
-    }
+    }*/
     .fc-time-grid-event.fc-short .fc-time:before {
         display: none;
     }
