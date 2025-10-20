@@ -1,0 +1,22 @@
+# Disable directory listing
+Options -Indexes
+
+# Deny everything by default
+<IfModule authz_core_module>
+    Require all denied
+</IfModule>
+<IfModule !authz_core_module>
+    Order deny,allow
+    Deny from all
+</IfModule>
+
+# Allow only css.php
+<Files "css.php">
+    <IfModule authz_core_module>
+        Require all granted
+    </IfModule>
+    <IfModule !authz_core_module>
+        Order allow,deny
+        Allow from all
+    </IfModule>
+</Files>
