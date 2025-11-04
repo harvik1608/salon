@@ -80,10 +80,11 @@ defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125);    // highest a
 
 $ht = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off') ? 'https://' : 'http://';
 $baseUrl = $ht.$_SERVER['HTTP_HOST'].'/';
-$baseUrl = "https://embellishlondon.com/";
+// $baseUrl = "https://embellishlondon.com/";
+$baseUrl = "http://localhost/london/";
 
 
-define('COMPANY_ID',1);
+define('COMPANY_ID',4);
 define('DEFAULT_SERVICE_AVATAR',$baseUrl.'beauty/public/upload/service/default.png');
 define('UPLOAD_PATH','C:/xampp/htdocs/beauty/');
 define('ERROR_MESSAGE','Oops something went wrong');

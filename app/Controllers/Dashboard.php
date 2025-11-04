@@ -118,7 +118,7 @@
                 $response["html"] = view("user/my_cart",$response);
 
                 $available_dates = array();
-                $api_data = array("key" => APP_KEY,"tag" => "available_dates","company_id" => COMPANY_ID);
+                $api_data = array("key" => APP_KEY,"tag" => "available_dates","company_id" => COMPANY_ID,"customer_id" => $this->userdata["id"]);
                 $resp = callApi(API_BASE_URL."api/available_dates",$api_data);
                 if(isset($resp["status"]) && $resp["status"] == 200) {
                     $status = 200;
