@@ -326,11 +326,68 @@
 
         public function submit_contact_form()
         {
-            $post = $this->request->getVar();
-            $post['key'] = APP_KEY;
-            $post['tag'] = "send_inquiry";
-            $post['company_id'] = COMPANY_ID;
-            $response = callApi(API_BASE_URL."api/send_inquiry",$post);
-            return $this->response->setJSON($response);
+            $request = service('request');
+            $name = trim($request->getPost('name'));
+            $email = trim($request->getPost('email'));
+            $message = trim($request->getPost('message'));
+            $honeypot = trim($request->getPost('website'));
+
+            // 🕵️ If honeypot has any value — it's a bot
+            if (!empty($honeypot)) {
+                log_message('warning', 'Spam detected: honeypot filled.');
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'Bot detected — request blocked.'
+                ]);
+            }
+
+            $recaptchaResponse = $request->getPost('g-recaptcha-response');
+            if (!$this->verifyRecaptcha($recaptchaResponse)) {
+                return $this->response->setJSON([
+                    'success' => false,
+                    'message' => 'reCAPTCHA failed, please try again.'
+                ]);
+            } else {
+                $post = $this->request->getVar();
+                $post['key'] = APP_KEY;
+                $post['tag'] = "send_inquiry";
+                $post['company_id'] = COMPANY_ID;
+                $response = callApi(API_BASE_URL."api/send_inquiry",$post);
+                return $this->response->setJSON($response);
+            }
+
+            // $secret = "6LemTvYrAAAAAD5XQdoUTRRcH4tErfID-24emPex";
+            // $verify = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$recaptchaResponse}");
+            // $responseData = json_decode($verify);
+            // if (empty($responseData->success) || $responseData->success != true) {
+                
+            // } else {
+            //     return $this->response->setJSON(["status" => 400]);
+            // }
+        }
+
+        public function verifyRecaptcha($recaptchaResponse)
+        {
+            $secret = '6LemTvYrAAAAAD5XQdoUTRRcH4tErfID-24emPex';
+            $verify = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$recaptchaResponse}");
+            $responseData = json_decode($verify);
+            return (!empty($responseData->success) && $responseData->success == true);
+        }
+
+        public function delete_logs()
+        {
+            $logPath = WRITEPATH . 'logs/';
+            $deleteBefore = strtotime(date('Y-m-d')); // delete older than this date
+            
+            $files = glob($logPath . 'log-*.log');
+            foreach ($files as $file) {
+                if (preg_match('/log-(\d{4}-\d{2}-\d{2})\.log$/', $file, $matches)) {
+                    $fileDate = strtotime($matches[1]);
+            
+                    if ($fileDate < $deleteBefore) {
+                        @unlink($file);
+                    }
+                }
+            }
         }
     }

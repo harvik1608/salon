@@ -9,7 +9,7 @@
 	?>
 			<head>
 			    <meta charset="Utf-8">
-			    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
+			    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 			    <title><?php echo $company["data"]["company_name"]; ?></title>
 			    <link rel="icon" type="image/png" href="<?php echo base_url('public/frontend/images/favicon.png'); ?>">
 			    <link rel="stylesheet" href="<?php echo base_url('public/frontend/css/all.min.css'); ?>">
@@ -49,7 +49,7 @@
 					.main_menu .menu_right li a,.gallery_filter button.active,.gallery_filter button {
 						border: 1px solid <?php echo $company["data"]["code"]; ?> !important;
 					}
-					.single_categories, .section_heading h5::before, .section_heading h5::after, .gallery_filter button.active,.gallery_filter button, .single_counter_center h2,.single_counter_center::before,.single_counter_center::after,.single_team:hover .single_team_text,.single_testimonial,.footer_subscribe,.read_btn,.scroll_btn,.common_btn,.contact_info:hover {
+					.single_categories, .section_heading h5::before, .section_heading h5::after, .gallery_filter button.active,.gallery_filter button, .single_counter_center h2,.single_counter_center::before,.single_counter_center::after,.single_team:hover .single_team_text,.single_testimonial,.footer_subscribe,.read_btn,.scroll_btn,.contact_info:hover {
 						background: <?php echo $company["data"]["code"]; ?> !important;
 					}
 					.single_counter_center {

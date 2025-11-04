@@ -50,6 +50,9 @@
             </div>
             <div class="col-lg-7 m-auto wow fadeInUp" data-wow-duration="1s">
                 <form class="contact_form" id="contactForm" action="<?php echo base_url('submit-contact-form'); ?>">
+                    <div style="display:none;">
+                        <input type="text" name="website" value="">
+                    </div>
                     <h2>Do You have Any Questions?</h2>
                     <div class="row">
                         <div class="col-xl-6">
@@ -63,6 +66,7 @@
                         </div>
                         <div class="col-xl-12">
                             <textarea rows="7" placeholder="Write something Here" id="message" name="message"></textarea>
+                            <div class="g-recaptcha" data-sitekey="6LemTvYrAAAAAEb0inNCwXOoI_oAVHoIIa75w5fb"></div>
                             <button type="submit" class="common_btn">Send Message</button>
                         </div>
                     </div>
@@ -71,6 +75,7 @@
         </div>
     </div>
 </section>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script type="text/javascript">
     var page_title = "Contact Us";
     $(document).ready(function(){
@@ -86,29 +91,35 @@
             } else if($.trim($("#message").val()) == "") {
                 show_toast("Oops!","Please write something...");
             } else {
-                $.ajax({
-                    url: $("#contactForm").attr("action"),
-                    type: "POST",
-                    data: new FormData(this),
-                    processData: false,
-                    contentType: false,
-                    cache: false,
-                    beforeSend:function(){
-                        $("#contactForm button[type=submit]").attr("disabled",true).html('<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>');
-                    },
-                    success:function(response){
-                        if(response.status == 200) {
-                            $("#name").val("");
-                            $("#phone").val("");
-                            $("#email").val("");
-                            $("#message").val("");
-                            show_toast("Success!",response.message);
-                        } else {
-                            show_toast("Oops!","Please try again later.");
+                const response = grecaptcha.getResponse();
+                if (response.length === 0) {
+                    show_toast("Oops!","Please verify you are not a robot!");
+                } else {
+                    $.ajax({
+                        url: $("#contactForm").attr("action"),
+                        type: "POST",
+                        data: new FormData(this),
+                        processData: false,
+                        contentType: false,
+                        cache: false,
+                        beforeSend:function(){
+                            $("#contactForm button[type=submit]").attr("disabled",true).html('<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>');
+                        },
+                        success:function(response){
+                            grecaptcha.reset();
+                            if(response.status == 200) {
+                                $("#name").val("");
+                                $("#phone").val("");
+                                $("#email").val("");
+                                $("#message").val("");
+                                show_toast("Success!",response.message);
+                            } else {
+                                show_toast("Oops!","Please try again later.");
+                            }
+                            $("#contactForm button[type=submit]").attr("disabled",false).html('Send Message');
                         }
-                        $("#contactForm button[type=submit]").attr("disabled",false).html('Send Message');
-                    }
-                });
+                    });   
+                }
             }
         })
     });

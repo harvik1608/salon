@@ -11,6 +11,17 @@
             <button class="nav-link" id="v-pills-home-tab" onclick="window.location.href='<?php echo base_url('dashboard'); ?>'">
                 <span><i class="fas fa-user"></i></span> Personal Info
             </button>
+            <?php
+                $session = session();
+                $udata = $session->get("userdata");
+                if($udata["id"] == 25151) {
+            ?>
+                    <button class="nav-link" id="v-pills-home-tab" onclick="window.location.href='<?php echo base_url('consent-form'); ?>'">
+                        <span><i class="fas fa-user"></i></span> Consent Form 
+                    </button>
+            <?php
+                } 
+            ?>
             <button class="nav-link" id="v-pills-profile-tab" onclick="window.location.href='<?php echo base_url('my-appointments'); ?>'">
                 <span><i class="fas fa-heart"></i></span> My Appointements
             </button>

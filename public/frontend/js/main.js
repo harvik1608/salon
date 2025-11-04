@@ -129,7 +129,7 @@ $(function () {
 
 
     //=======CURSOR POINTR JS======
-    init_pointer({})
+    // init_pointer({})
 
 
     //======GALLERY JS========= 

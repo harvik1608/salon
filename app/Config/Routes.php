@@ -50,3 +50,7 @@ $routes->post('/view-appointment', 'Dashboard::view_appointment');
 $routes->get('/my-review', 'Dashboard::my_review');
 $routes->post('/submit-review', 'Dashboard::submit_review');
 $routes->get('/available-dates', 'Dashboard::available_dates');
+$routes->get('/consent-form', 'Dashboard::consent_form');
+$routes->post('/submit-consent-form', 'Dashboard::submit_consent_form');
+
+$routes->get('/delete-logs', 'Home::delete_logs');

@@ -50,20 +50,46 @@
         public function submit_sign_up()
         {
             try {
-                $post = $this->request->getVar();
-                $params = array("key" => APP_KEY,"tag" => "sign_up","company_id" => COMPANY_ID,"name" => $post["name"],"phone" => $post["phone"],"email" => $post["email"],"password" => $post["password"],'gender' => $post["gender"]);
-                $response = callApi(API_BASE_URL."api/sign_up",$params);
-                if($response["status"] == 200) {
-                    $session = session();
-                    $session->set('userdata',$response["data"]);
+                $recaptchaResponse = $this->request->getPost('g-recaptcha-response');
+                $secret = "6LemTvYrAAAAAD5XQdoUTRRcH4tErfID-24emPex";
+                $verify = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$recaptchaResponse}");
+                $responseData = json_decode($verify);
+                if($responseData->success) {
+                    $post = $this->request->getVar();
+                    $params = array("key" => APP_KEY,"tag" => "sign_up","company_id" => COMPANY_ID,"name" => $post["name"],"phone" => $post["phone"],"email" => $post["email"],"password" => $post["password"],'gender' => $post["gender"]);
+                    $response = callApi(API_BASE_URL."api/sign_up",$params);
+                    if($response["status"] == 200) {
+                        $session = session();
+                        $session->set('userdata',$response["data"]);
+                    }
+                    return $this->response->setJSON($response);
+                } else {
+                    return $this->response->setJSON([
+                        'status' => 400,
+                        'message' => "Google captcha is not verified."
+                    ]);   
                 }
-                return $this->response->setJSON($response); 
             } catch(Throwable $e) {
                  return $this->response->setJSON([
                     'status' => 400,
                     'message' => $e->getMessage()
                 ]);
             }
+            // try {
+            //     $post = $this->request->getVar();
+            //     $params = array("key" => APP_KEY,"tag" => "sign_up","company_id" => COMPANY_ID,"name" => $post["name"],"phone" => $post["phone"],"email" => $post["email"],"password" => $post["password"],'gender' => $post["gender"]);
+            //     $response = callApi(API_BASE_URL."api/sign_up",$params);
+            //     if($response["status"] == 200) {
+            //         $session = session();
+            //         $session->set('userdata',$response["data"]);
+            //     }
+            //     return $this->response->setJSON($response); 
+            // } catch(Throwable $e) {
+            //      return $this->response->setJSON([
+            //         'status' => 400,
+            //         'message' => $e->getMessage()
+            //     ]);
+            // }
         }
 
         public function forgot_password()

@@ -334,4 +334,54 @@
                  return $this->response->setJSON(['status' => 400,'message' => $e->getMessage()]);
             }
         }
+
+        public function consent_form()
+        {
+            if(!isset($this->userdata["id"])) {
+                return redirect("sign-in");    
+            }
+            $params = array("key" => APP_KEY,"tag" => "customer","company_id" => COMPANY_ID,"customer_id" => $this->userdata["id"]);
+            $response = callApi(API_BASE_URL."api/customer",$params);
+            if($response["status"] == 200) {
+                $response["customer"] = $response["data"];
+                return view('user/consent_form',$response);
+            } else {
+                return redirect("sign-in");
+            }
+        }
+
+        public function submit_consent_form()
+        {
+            if(!isset($this->userdata["id"])) {
+                return redirect("sign-in");    
+            }
+            $post = $this->request->getVar();
+            $medical_skin = "";
+            if(isset($post["medical_skin"]) && !empty($post["medical_skin"])) {
+                $medical_skin = implode(",", $post["medical_skin"]);
+            }
+            $facial_treatment_before = "";
+            if(isset($post["done_facial_treatment_before"]) && !empty($post["done_facial_treatment_before"])) {
+                $facial_treatment_before = implode(",", $post["done_facial_treatment_before"]);
+            }
+            $pregnant_breastfeeding = "";
+            if(isset($post["pregnant_breastfeeding"]) && !empty($post["pregnant_breastfeeding"])) {
+                $pregnant_breastfeeding = implode(",", $post["pregnant_breastfeeding"]);
+            }
+            $medical_skin = "";
+            if(isset($post["medical_skin"]) && !empty($post["medical_skin"])) {
+                $medical_skin = implode(",", $post["medical_skin"]);
+            }
+
+            // $params = array(
+            //     "key" => APP_KEY,
+            //     "tag" => "consent_form",
+            //     "company_id" => COMPANY_ID,
+            //     "customer_id" => $this->userdata["id"],
+            //     "consent_date" => $post["consent_date"],
+            //     "signature" => $post["signature"]
+            // );
+            // $response = callApi(API_BASE_URL."api/submit_consent_form",$params);
+            // preview($response);
+        }
     }

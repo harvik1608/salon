@@ -118,6 +118,11 @@
                             </div>
                             <div class="col-xl-12">
                                 <div class="login_input">
+                                    <div class="g-recaptcha" data-sitekey="6LemTvYrAAAAAEb0inNCwXOoI_oAVHoIIa75w5fb"></div>
+                                </div>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="login_input">
                                     <button type="submit" class="common_btn">Sign Up</button>
                                 </div>
                             </div>
@@ -129,6 +134,7 @@
         </div>
     </div>
 </section>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script type="text/javascript">
     var page_title = "";
     $(document).ready(function(){
@@ -148,24 +154,30 @@
             } else if($.trim($("#password").val()).length < 6) {
                 show_toast("Oops!","Password must be 6 characters long.");
             } else {
-                $.ajax({
-                    url: "<?php echo base_url('submit-sign-up'); ?>",
-                    type: "post",
-                    data: new FormData(this),
-                    processData: false,
-                    contentType: false,
-                    beforeSend:function(){
-                        $("#signUpForm button[type=submit]").attr("disabled",true).html('<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>');
-                    },
-                    success:function(response){
-                        if(response.status == 200) {
-                            window.location.href = "dashboard";
-                        } else {
-                            $("#signUpForm button[type=submit]").attr("disabled",false).html('Click Here');
-                            show_toast("Oops!",response.message);
+                const response = grecaptcha.getResponse();
+                if (response.length === 0) {
+                    show_toast("Oops!","Please verify you are not a robot!");
+                } else {
+                    $.ajax({
+                        url: "<?php echo base_url('submit-sign-up'); ?>",
+                        type: "post",
+                        data: new FormData(this),
+                        processData: false,
+                        contentType: false,
+                        beforeSend:function(){
+                            $("#signUpForm button[type=submit]").attr("disabled",true).html('<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>');
+                        },
+                        success:function(response){
+                            grecaptcha.reset();
+                            if(response.status == 200) {
+                                window.location.href = "dashboard";
+                            } else {
+                                $("#signUpForm button[type=submit]").attr("disabled",false).html('Click Here');
+                                show_toast("Oops!",response.message);
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
     });

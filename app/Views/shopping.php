@@ -56,6 +56,12 @@
         .price_cell span {
             font-size: 10px !important;
         }
+        
+        #your_cart {
+            width: 20%;
+            font-size: 12px !important;
+            padding: 8px 12px;
+        }
     }
 
     /* Tablets (screen width ≤ 768px) */
@@ -71,6 +77,12 @@
         .price_cell span {
             font-size: 10px !important;
         }
+        
+        #your_cart {
+            width: 20%;
+            font-size: 12px !important;
+            padding: 8px 12px;
+        }
     }
 
     /* Mobile phones (screen width ≤ 480px) */
@@ -85,6 +97,12 @@
 
         .price_cell span {
             font-size: 10px !important;
+        }
+        
+        #your_cart {
+            width: 20%;
+            font-size: 12px !important;
+            padding: 8px 12px;
         }
     }
 </style>
@@ -375,19 +393,19 @@
     }
     function apply_datepicker(available_dates,selector = "#appointment_date")
     {
-        // var enabledDates = [];
-        // if(available_dates.length > 0) {
-        //     for(var i = 0; i < available_dates.length; i ++) {
-        //         enabledDates.push(available_dates[i]);   
-        //     }
-        // }
-        // function enableSpecificDates(date) {
-        //     var formattedDate = $.datepicker.formatDate('yy-mm-dd', date);
-        //     return [enabledDates.includes(formattedDate)];
-        // }
+        var enabledDates = [];
+        if(available_dates.length > 0) {
+            for(var i = 0; i < available_dates.length; i ++) {
+                enabledDates.push(available_dates[i]);   
+            }
+        }
+        function enableSpecificDates(date) {
+            var formattedDate = $.datepicker.formatDate('yy-mm-dd', date);
+            return [enabledDates.includes(formattedDate)];
+        }
         $(selector).datepicker({
             minDate: new Date(),
-            // beforeShowDay: enableSpecificDates
+            beforeShowDay: enableSpecificDates
         });
     }
 </script>
