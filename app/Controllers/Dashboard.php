@@ -316,8 +316,8 @@
         {
             try {
                 $date = date("Y-m-d",strtotime($this->request->getVar('date')));
-                $api_data = array("key" => APP_KEY,"tag" => "check_discount","date" => $date,"company_id" => COMPANY_ID,'customer_id' => $this->userdata["id"]);
-                $response = callApi(API_BASE_URL."api/check_discount",$api_data);
+                $api_data = array("key" => APP_KEY,"tag" => "fetch_available_slots","date" => $date,"company_id" => COMPANY_ID,'customer_id' => $this->userdata["id"]);
+                $response = callApi(API_BASE_URL."api/fetch_available_slots",$api_data);
                 return $this->response->setJSON($response);
             } catch(Throwable $e) {
                  return $this->response->setJSON(['status' => 400,'message' => $e->getMessage()]);
