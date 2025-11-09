@@ -23,11 +23,12 @@
 			    <link rel="stylesheet" href="<?php echo base_url('public/frontend/css/animate.css'); ?>">
 			    <link rel="stylesheet" href="<?php echo base_url('public/frontend/css/style.css'); ?>">
 			    <link rel="stylesheet" href="<?php echo base_url('public/frontend/css/responsive.css'); ?>">
-			    <link rel="stylesheet" href="<?php echo base_url('public/frontend/toast/jquery.toast.css'); ?>">
+			    <link rel="stylesheet" href="<?php echo base_url('public/frontend/css/custom.css'); ?>">
 			    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 			    <link rel="preconnect" href="https://fonts.googleapis.com">
 				<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 				<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+				<link rel="stylesheet" href="<?php echo base_url('public/frontend/toast/jquery.toast.css'); ?>">
 				<style>
 					body, .jq-toast-single h2, .jq-toast-single, .breadcrumb_text h1 {
 						font-family: "Nunito", sans-serif !important;
@@ -43,23 +44,11 @@
 						font-size: 17px !important;
 						text-align: center;
 					}
-					.topbar_left li p i, .topbar_left li a i, .main_menu .navbar-nav .nav-item .nav-link.active, .main_menu .menu_right li a, .single_slider_text h1 span, .section_heading h5, .main_menu .navbar-nav .nav-item:hover .nav-link {
-						color: <?php echo $company["data"]["code"]; ?> !important;
-					}
-					.main_menu .menu_right li a,.gallery_filter button.active,.gallery_filter button {
-						border: 1px solid <?php echo $company["data"]["code"]; ?> !important;
-					}
-					.single_categories, .section_heading h5::before, .section_heading h5::after, .gallery_filter button.active,.gallery_filter button, .single_counter_center h2,.single_counter_center::before,.single_counter_center::after,.single_team:hover .single_team_text,.single_testimonial,.footer_subscribe,.read_btn,.scroll_btn,.contact_info:hover {
-						background: <?php echo $company["data"]["code"]; ?> !important;
-					}
 					.single_counter_center {
 						border: 7px solid <?php echo $company["data"]["code"]; ?> !important;
 					}
-					.single_testimonial p{
+					.single_testimonial p {
 						color: #ffffff !important;
-					}
-					.single_testimonial:hover .single_testimonial_img {
-						border-color:<?php echo $company["data"]["code"]; ?> !important;
 					}
 					.breadcrumb_overlay {
 						background: linear-gradient(180deg, <?php echo $company["data"]["code"]; ?> 0%, rgba(0, 38, 51, 0.6) 57.04%);
@@ -73,33 +62,18 @@
 					#staticBackdrop .form-check {
 				        float: right;
 				    }
-				    .topbar {
-				    	background: <?php echo $company["data"]["code"]; ?> !important;
-				    }
-				    .gallery_item .gal_img_overlay {
-				    	background: <?php echo $company["data"]["code"]; ?> !important;
-				    }
 				    .gallery_item .gal_img_overlay h4 {
 				    	font-size: 20px !important;
-				    }
-				    .breadcrumb_text ul li a:active {
-				    	color: <?php echo $company["data"]["code"]; ?> !important;
 				    }
 				    .empty_cart {
 				    	width: 50% !important;
 				    }
-				    .filled-star, .gallery_item .venobox span, .footer_link p i, .breadcrumb_text ul li a, .breadcrumb_text ul li a::after  {
-				    	color: <?php echo $company["data"]["code"]; ?> !important;
-				    }
+				    
 				    .jq-toast-single {
 				    	width: 300px !important;
 				    }
 				    .navbar-brand img {
 				    	width: 85% !important;
-				    }
-				    .main_menu .menu_right li a:hover {
-				    	background: <?php echo $company["data"]["code"]; ?>;
-    					color: #ffffff !important;
 				    }
 				    .footer_link p {
 				    	text-transform: lowercase;
@@ -118,28 +92,16 @@
 					    color: #ffffff !important;
 					    border-left: none !important;
 				    }
-				    .sidebar_item h3::after {
-				    	background: <?php echo $company["data"]["code"]; ?>;
-				    }
-				    .sidebar_category ul li a:hover {
-				    	background: <?php echo $company["data"]["code"]; ?>;
-				    }
 				    #login_input {
 				    	margin-top: 5px;
 				    }
-				    a[data-current="1"] {
-				    	background: <?php echo $company["data"]["code"]; ?> !important;
-				    	color: #FFFFFF !important;
-				    }
-				    .sidebar_category ul li a[data-current="1"] span, .sidebar_category ul li a::after {
+				    /*.sidebar_category ul li a[data-current="1"] span, .sidebar_category ul li a::after {
 				        color: #FFFFFF !important;
-				    }
+				    }*/
 				    #footer-section-1,#footer-section-2,#footer-section-3 {
 				        margin-top: 50px;
 				    }
-				    .dashboard_sidebar, .dashboard_sidebar .nav .nav-link span, .dashboard_sidebar .nav .nav-link::after, .personal_info, .personal_info_edit {
-				        background: <?php echo $company["data"]["code"]; ?>;
-				    }
+				    
 				    .dashboard_sidebar .nav .nav-link span {
 				        height: 50px;
 				        left: -2px;
@@ -152,9 +114,6 @@
 				    }
 				    .personal_info_address li { 
 				        text-transform: unset !important;
-				    }
-				    .personal_info h4 a, .personal_info_edit h4 a {
-				        background: <?php echo $company["data"]["code"]; ?>;
 				    }
 				    .contact_info h3,.contact_info p {
 				        color: #fff !important;
@@ -178,10 +137,6 @@
 				            margin-top: 25px;
 				        }
 				    }
-				    .login_input .common_btn {
-				    	background: #002633 !important;
-				    	color: #fff !important;
-				    }
 				    @media (min-width: 576px) and (max-width: 767.99px) {
                         .main_menu .navbar-toggler {
                             background: <?php echo $company["data"]["code"]; ?>;
@@ -197,6 +152,49 @@
                             background: <?php echo $company["data"]["code"]; ?>;
                         }
 				    }
+				</style>
+				<style>
+					.single_slider .common_btn,.sidebar_item,.price-caption,.single_categories, .gallery_filter button.active,.gallery_filter button, .single_counter_center h2,.single_counter_center::before,.single_counter_center::after,.single_team:hover .single_team_text,.single_testimonial,.footer_subscribe,.read_btn,.scroll_btn,.contact_info:hover,.topbar,.gallery_item .gal_img_overlay,.dashboard_sidebar, .personal_info, .personal_info_edit,.login_input span,.login_input .common_btn,.contact_form .common_btn {
+						background: <?php echo $company["data"]["code"]; ?> !important;
+					}
+					a.service-title,.topbar_left li p i, .topbar_left li a i, .main_menu .navbar-nav .nav-item .nav-link.active, .main_menu .menu_right li a, .main_menu .navbar-nav .nav-item:hover .nav-link,.breadcrumb_text ul li a:active,.gallery_item .venobox span, .footer_link p i, .breadcrumb_text ul li a, .breadcrumb_text ul li a::after,.main_menu .menu_right li a:hover,.single_slider_text h1 span {
+						color: <?php echo $company["data"]["code"]; ?> !important;
+						font-weight: bold;
+					}
+					.main_menu .menu_right li a,.gallery_filter button.active,.gallery_filter button {
+						border: 1px solid <?php echo $company["data"]["code"]; ?> !important;
+					}
+					.breadcrumb_text ul li a,.breadcrumb_text ul li a::after,.full-filled-star,.footer_link ul li a:hover,.section_heading h5 {
+						color: <?php echo $company["data"]["secondary_color"]; ?> !important;
+						font-weight: bold;
+					}
+					.section_heading h5::before, .section_heading h5::after,.sidebar_item h3::after,.sidebar_category ul li a:hover,#your_cart:hover,.read_btn::after,.dashboard_sidebar .nav .nav-link span,.dashboard_sidebar .nav .nav-link::after,.personal_info_edit .common_btn,.personal_info h4 a,.personal_info_edit h4 a,.login_area {
+						background: <?php echo $company["data"]["secondary_color"]; ?> !important;
+					}
+					a[data-current="1"] {
+				    	background: <?php echo $company["data"]["secondary_color"]; ?> !important;
+				    	color: #ffffff !important;
+				    }
+				    .main_menu .menu_right li a:hover {
+				    	background: <?php echo $company["data"]["code"]; ?> !important;
+				    	color: #ffffff !important;
+				    }
+				    .single_testimonial:hover .single_testimonial_img {
+				    	border-color: <?php echo $company["data"]["secondary_color"]; ?> !important;
+				    }
+				    .sidebar_item h3,.login_area p a:hover {
+				    	color: #ffffff !important;
+				    }
+				    #your_cart:hover {
+				    	cursor: pointer;
+				    }
+					.fas {
+						padding: 2px;
+					}
+					.login_input .form-check input:checked {
+						background-color: <?php echo $company["data"]["code"]; ?> !important;
+    					border-color: <?php echo $company["data"]["code"]; ?> !important;
+					}
 				</style>
 				<script src="<?php echo base_url('public/frontend/js/jquery-3.6.0.min.js'); ?>"></script>
 				<script src="<?php echo base_url('public/frontend/toast/jquery.toast.js'); ?>"></script>

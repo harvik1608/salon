@@ -37,7 +37,6 @@
     }
 
     .price-caption {
-        background-color: #000;
         padding: 3px 5px;
         border-radius: 10px;
         color: #ffffff;

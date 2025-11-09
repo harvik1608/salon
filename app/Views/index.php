@@ -18,7 +18,7 @@
                         <div class="single_slider" style="background: url(<?php echo $row['avatar']; ?>);">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-xl-6 col-md-8">
+                                    <div class="col-xl-8 col-md-8">
                                         <div class="single_slider_text wow fadeInUp" data-wow-duration="1s">
                                             <h5></h5>
                                             <h1>Welcome To <br><span><?php echo $company['company_name']; ?></span></h1>
@@ -158,21 +158,21 @@
         </div>
     </div>
 </section>
-<section class="testimonial mt_115 xs_mt_70">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-7 col-md-10 m-auto wow fadeInUp" data-wow-duration="1s">
-                <div class="section_heading mb_35">
-                    <h5>our testimonial</h5>
-                    <h3>What Our Clients Says</h3>
-                </div>
-            </div>
-        </div>
-        <div class="row testi_slider wow fadeInUp" data-wow-duration="1s">
-            <?php
-                if(isset($reviews["status"]) && $reviews["status"] == 200 && !empty($reviews["data"])) {
-                    foreach($reviews["data"] as $review) {
-            ?>  
+<?php
+    if(isset($reviews["status"]) && $reviews["status"] == 200 && !empty($reviews["data"])) {
+        foreach($reviews["data"] as $review) {
+?> 
+            <section class="testimonial mt_115 xs_mt_70">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-7 col-md-10 m-auto wow fadeInUp" data-wow-duration="1s">
+                            <div class="section_heading mb_35">
+                                <h5>our testimonial</h5>
+                                <h3>What Our Clients Says</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row testi_slider wow fadeInUp" data-wow-duration="1s">
                         <div class="col-xl-4">
                             <div class="single_testimonial">
                                 <div class="single_testimonial_img">
@@ -201,13 +201,13 @@
                                 </div>
                             </div>
                         </div>
-            <?php
-                    }
-                } 
-            ?>
-        </div>
-    </div>
-</section>
+                    </div>
+                </div>
+            </section>
+<?php
+        }
+    } 
+?>
 <script type="text/javascript">
     var page_title = "Home";
 </script>
