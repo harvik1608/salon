@@ -65,6 +65,7 @@
 		                    <select name="appointment_time" id="appointment_time" class="form-control" autocomplete="false">
 		                    	<option value="">Choose Time</option>
 		                    </select>
+		                    <small class="fetch_slots"></small>
 		                </div>
 		                <div class="col-6 col-xl-4 mt-2">
 		                	<label><small>Amount to pay</small></label>
@@ -134,7 +135,7 @@
 		   	echo '<input type="hidden" name="total_min" value="'.$total_min.'" />';
 		   	echo '<input type="hidden" id="total_amt" value="'.$total.'" />';
 		} else {
-			echo '<center><img src="'.base_url('public/frontend/images/cart_empty.webp').'" class="empty_cart" /><br><a class="read_btn" onclick="close_modal()">Continue Booking<a></center>';
+			echo '<center><img src="'.base_url('public/frontend/images/empty.png').'" class="empty_cart" /><br><a class="read_btn" onclick="close_modal()">Continue Booking<a></center>';
 		}
 	}
 ?>

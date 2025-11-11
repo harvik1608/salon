@@ -349,6 +349,9 @@
             data: {
                 date: $("#appointment_date").val()
             },
+            beforeSend:function(){
+                $(".fetch_slots").html("Fetching slots... please wait.");
+            },
             success:function(response){
                 updated_my_cart($("#appointment_date").val(),response);
             }
@@ -366,6 +369,7 @@
                 is_update_only_cart: 1
             },
             success:function(response){
+                $(".fetch_slots").html("");
                 $("#bookAppointment .reservation_form #cart_body").html(response.html);
                 calc_total_amt();
                 fill_time(responseData);
