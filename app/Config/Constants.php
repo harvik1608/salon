@@ -84,7 +84,7 @@ $baseUrl = $ht.$_SERVER['HTTP_HOST'].'/';
 $baseUrl = "http://localhost/london/";
 
 
-define('COMPANY_ID',4);
+define('COMPANY_ID',3);
 define('DEFAULT_SERVICE_AVATAR',$baseUrl.'beauty/public/upload/service/default.png');
 define('UPLOAD_PATH','C:/xampp/htdocs/beauty/');
 define('ERROR_MESSAGE','Oops something went wrong');
